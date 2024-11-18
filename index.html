@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <title>Home</title>
+    <style>
+        /* General Reset and Body Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #clock {
+            display: flex;
+            font-size: 48px;
+            font-weight: bold;
+            color: rgb(211, 95, 33);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-color: black;
+            font-family: Arial, sans-serif;
+        }
+
+        h3 {
+            display: flex;
+            margin: 40px;
+            margin-bottom: 0px;
+            color: rgb(240, 169, 98);
+            text-align: justify;
+            font-family: "Inter", sans-serif;
+        }
+
+        /* Navigation Styling */
+        nav {
+            width: 100%;
+            background-color: rgb(231, 123, 15);
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(204, 134, 134, 0.1);
+            font-family: "Geist", sans-serif;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+            list-style-type: none;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333333;
+            font-weight: bold;
+        }
+
+        /* Main Content Section */
+        .body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            /* Upewnij się, że header jest traktowany jako kolumna */
+            justify-content: flex-start;
+            /* Wyrównuje elementy do góry */
+            align-items: center;
+            width: 70%;
+            padding: 20px;
+            background-color: #25222d;
+        }
+
+
+        header {
+            background-color: black;
+            color: rgb(211, 95, 33);
+            width: 100vw;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            text-align: start;
+            justify-content: center;
+            margin-top: -20px;
+            font-family: "Geist", sans-serif;
+        }
+
+        .section {
+            display: flex;
+            gap: 24px;
+            margin: 12px;
+            margin-top: 50px;
+            margin-bottom: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .section img {
+            width: calc(20% - 24px);
+            max-width: 360px;
+            height: auto;
+        }
+
+
+        /* Footer Styling */
+        footer {
+            width: 100%;
+            background-color: rgb(231, 123, 15);
+            color: rgb(43, 41, 41);
+            padding: 10px 0;
+            text-align: center;
+            font-size: 14px;
+            font-family: "Geist", sans-serif;
+        }
+
+        h2 {
+            display: flex;
+            color: rgb(211, 95, 33);
+            text-align: center;
+            margin: 40px;
+            margin-top: 60px;
+            font-family: "Geist", sans-serif;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            /* Trzy elementy w wierszu */
+            gap: 36px;
+            /* Odstęp między elementami */
+            justify-items: center;
+            /* Wyrównanie zdjęć w osi poziomej */
+        }
+
+
+        .gallery figure {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: black;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            max-width: 200px;
+            /* Maksymalna szerokość obrazka z podpisem */
+            text-align: center;
+        }
+
+        .gallery img {
+
+            width: 150px;
+            /* Szerokość zdjęcia */
+            height: 150px;
+            /* Wysokość zdjęcia */
+            object-fit: cover;
+            /* Dopasowanie zdjęcia do ramki bez zniekształceń */
+            border-radius: 4px;
+        }
+
+
+        .new{
+            margin: 0px;
+            margin-top: 40px;
+            margin-bottom: 0px;
+            text-align: justify;
+            font-family: "Inter", sans-serif;
+        }
+
+        .gallery figcaption {
+            margin-top: 8px;
+            font-size: 14px;
+            color: rgb(231, 123, 15);
+            font-family: "Geist", sans-serif;
+        }
+    </style>
+</head>
+<script>
+    function updateClock() {
+        const clockElement = document.getElementById("clock");
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+
+        clockElement.textContent = `${hours}:${minutes}:${seconds}`;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock(); // Call immediately to avoid initial delay
+</script>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+            <li><a href="galeria.html">Galeria</a></li>
+        </ul>
+    </nav>
+
+
+
+    <div class="body">
+        <header>
+            <h1>Igrzyska śmierci</h1>
+        </header>
+        <div class="new" id="clock"></div>
+
+        <h3>
+            Igrzyska śmierci to popularna seria książek dla młodzieży z gatunku science fiction autorstwa Suzanne
+            Collins. Pierwsza część serii ukazała się 14 września 2008 roku
+            w Stanach Zjednoczonych. Dotychczas powstały cztery książki: "Igrzyska śmierci", "W pierścieniu ognia",
+            "Kosogłos" oraz "Ballada ptaków i węży" opowiadająca o losach młodego prezydenta Snowa.
+        </h3>
+
+        <section class="section">
+            <img src="https://www.granice.pl/sys6/pliki/okladka_k/89f9a67fa6acbb48789c23268971fbd7.jpeg">
+            <img src="https://a.allegroimg.com/original/0cc28a/7b47c56e42f7bcce6e06f22be5f1">
+            <img src="https://i.erli.pl/cdfz02.462c15.l.webp">
+            <img src="https://th.bing.com/th/id/OIP.OWVr31GtHTIQoVjkbMGHRQHaLP?w=118&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7">
+        </section>
+
+        <h3>
+            Katniss, główna bohaterka trylogii, mieszka w Dwunastym Dystrykcie, który jest częścią totalitarnego
+            państwa Panem. Każdego roku mieszkańcy wszystkich dystryktów zobowiązani
+            są drogą losowania wyłonić dwoje nastolatków, którzy wraz z pozostałymi staną do walki na śmierć i życie
+            w Głodowych Igrzyskach. Turniej jest transmitowany
+            i chętnie oglądany przez próżnych mieszkańców Kapitolu - stolicy Panem. Gdy spośród tysięcy karteczek
+            wylosowane zostaje imię młodszej siostry Katniss,
+            dziewczyna nie waha się ani chwili i zgłasza się na ochotnika, by zająć jej miejsce. Tak zaczyna się jej
+            przygoda oraz walka o przetrwanie, a także o miłość.
+        </h3>
+
+        <h3>
+            Ostatnia z dotychczas wydanych książek to "Ballada ptaków i węży. Prequel, który po długiej przerwie
+            trafił do rąk czytelników stawia ich od początku po drugiej stronie barykady.
+            Autorka próbuje odwrócić momentami sympatie z poprzednich książek i spojrzeć łaskawszym okiem na
+            mieszkańców Kapitolu, a w tym i naszego głównego bohatera - prezydenta Snowa.
+            Pokazane są jego losy, dzieciństwo i wszystko, co ukształtowało go i sprawiło, że stał się okrutnym
+            dyktatorem.
+        </h3>
+
+        <h3>
+            Seria książek "Igrzyska śmierci" odniosła światowy sukces, a na jej podstawie nakręcono pięć filmów.
+        </h3>
+
+
+        <h2> Bohaterowie </h2>
+
+        <div class="gallery">
+            <figure>
+                <img src="https://th.bing.com/th/id/OIP.m9rOjvhcjCl77zMHigZpYgHaHa?rs=1&pid=ImgDetMain"
+                    alt="Katniss Everdeen">
+                <figcaption>Katniss Everdeen</figcaption>
+            </figure>
+            <figure>
+                <img src="https://th.bing.com/th/id/R.09cfba97afe3f499a519f09f76ff597e?rik=IdVKcw6TLELpdw&riu=http%3a%2f%2fimages5.fanpop.com%2fimage%2fphotos%2f30200000%2fPeeta-Mellark-peeta-mellark-30270805-342-394.jpg&ehk=p1dBeuxdwB2dEZAm1F85iIRr1omW8H6re2gs7kqwnSA%3d&risl=&pid=ImgRaw&r=0"
+                    alt="Peeta Mellark">
+                <figcaption>Peeta Mellark</figcaption>
+            </figure>
+            <figure>
+                <img src="https://th.bing.com/th/id/OIP.HYVRyaoGJXOMiTHPfxYqawHaHf?rs=1&pid=ImgDetMain"
+                    alt="Coriolanus Snow">
+                <figcaption>Coriolanus Snow</figcaption>
+            </figure>
+            <figure>
+                <img src="https://i.pinimg.com/736x/06/a6/be/06a6be81c387226177d98bc340d02914.jpg"
+                    alt="Haymitch Abernathy">
+                <figcaption>Haymitch Abernathy</figcaption>
+            </figure>
+            <figure>
+                <img src="https://th.bing.com/th/id/R.bc47657409fa33fc127d8d4c0fac8a92?rik=nCgisFowKN06ng&riu=http%3a%2f%2f40.media.tumblr.com%2fc2772bd6cc8897c9888c86029ac25f8d%2ftumblr_ncrj0p9AOA1rt6c71o1_500.jpg&ehk=qXtpyZLqf6kvn2glK9l5JhOCpy1Dk3ZiFnzBT9CAHLw%3d&risl=&pid=ImgRaw&r=0"
+                    alt="Primrose Everdeen">
+                <figcaption>Primrose Everdeen</figcaption>
+            </figure>
+            <figure>
+                <img src="https://i.pinimg.com/originals/eb/71/c0/eb71c076067dff8355c891629a5e5921.jpg"
+                    alt="Finnick Odair">
+                <figcaption>Finnick Odair</figcaption>
+            </figure>
+        </div>
+    </div>
+
+    <footer>
+        Justyna Orłowska
+    </footer>
+</body>
+
+</html>

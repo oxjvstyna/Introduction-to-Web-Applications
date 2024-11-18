@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <title>Kontakt</title>
+    <style>
+        /* Style ogólne */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #25222d;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Nawigacja */
+        nav {
+            width: 100%;
+            background-color: rgb(231, 123, 15);
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(204, 134, 134, 0.1);
+            font-family: "Geist", sans-serif;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333333;
+            font-weight: bold;
+        }
+
+        /* Główna sekcja */
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Wycentrowanie w pionie */
+            flex: 1;
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Formularz */
+        form {
+            background-color: rgb(232, 150, 69);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px; /* Ustalona maksymalna szerokość */
+        }
+
+        h2 {
+            text-align: center;
+            color: #333333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #323131;
+            font-weight: bold;
+            font-family: "Geist", sans-serif;
+        }
+
+        input[type="text"],
+        select,
+        textarea {
+            width: 100%; /* Równa szerokość */
+            max-width: 400px; /* Dostosowana maksymalna szerokość */
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #443d3d;
+            border-radius: 4px;
+            font-size: 16px;
+            color: #333333;
+            box-sizing: border-box; /* Ustawienie, aby padding nie wpływał na szerokość */
+            background-color:#56565c;
+            font-family: "Geist", sans-serif;
+        }
+
+
+        input[type="submit"] {
+            background-color: #56565c;
+            color: #333333;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            font-family: "Geist", sans-serif;
+        }
+
+        input::placeholder, 
+        textarea::placeholder {
+            color: #333333; 
+            opacity: 1; 
+            font-family: "Geist", sans-serif;
+        }
+
+        
+
+        /* Stopka */
+        footer {
+            background-color: rgb(231, 123, 15);
+            color: rgb(43, 41, 41);
+            padding: 10px 0;
+            text-align: center;
+            font-size: 14px;
+            width: 100%;
+            position: relative;
+            bottom: 0;
+            font-family: "Geist", sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+            <li><a href="galeria.html">Galeria</a></li>
+        </ul>
+    </nav>
+    <main>
+        <form id="contact-form" action="submit_form.php" method="POST">
+            <h2>Kontakt</h2>
+            <label for="email">E-mail:</label>
+            <input type="text" id="email" name="email" placeholder="Podaj adres e-mail" required>
+            
+            <label for="subject">Temat wiadomości:</label>
+            <select id="subject" name="subject" required>
+                <option value="">--Wybierz temat--</option>
+                <option value="pytanie">Pytanie</option>
+                <option value="problem">Problem</option>
+                <option value="inne">Inne</option>
+            </select>
+            
+            <label for="message">Wiadomość:</label>
+            <textarea name="message" id="message" placeholder="Wpisz treść wiadomości" required></textarea>
+            
+            <input type="submit" value="Wyślij">
+        </form>
+        <script>
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+              // Pobierz wartości pól formularza
+              const email = document.getElementById('email').value.trim();
+              const subject = document.getElementById('subject').value.trim();
+              const message = document.getElementById('message').value.trim();
+          
+              // Flaga do śledzenia poprawności danych
+              let isValid = true;
+          
+              // Sprawdzanie e-maila
+              if (!validateEmail(email)) {
+                alert('Podaj poprawny adres e-mail.');
+                isValid = false;
+              }
+          
+              // Sprawdzanie tematu
+              if (subject === '') {
+                alert('Wybierz temat wiadomości.');
+                isValid = false;
+              }
+          
+              // Sprawdzanie treści wiadomości
+              if (message.length < 10) {
+                alert('Wiadomość musi zawierać co najmniej 10 znaków.');
+                isValid = false;
+              }
+          
+              // Jeśli jakakolwiek walidacja nie powiodła się, zapobiegamy wysłaniu formularza
+              if (!isValid) {
+                event.preventDefault();
+              }
+            });
+          
+            // Funkcja do walidacji e-maila
+            function validateEmail(email) {
+              const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+              return emailRegex.test(email);
+            }
+          </script>
+          
+        
+    </main>
+    <footer>
+        Justyna Orłowska
+    </footer>
+</body>
+</html>
