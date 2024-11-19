@@ -16,7 +16,7 @@
         rel="stylesheet">
     <title>Home</title>
     <style>
-        /* General Reset and Body Styling */
+
         * {
             margin: 0;
             padding: 0;
@@ -49,7 +49,6 @@
             font-family: "Inter", sans-serif;
         }
 
-        /* Navigation Styling */
         nav {
             width: 100%;
             background-color: rgb(231, 123, 15);
@@ -72,14 +71,11 @@
             font-weight: bold;
         }
 
-        /* Main Content Section */
         .body {
             flex: 1;
             display: flex;
             flex-direction: column;
-            /* Upewnij się, że header jest traktowany jako kolumna */
             justify-content: flex-start;
-            /* Wyrównuje elementy do góry */
             align-items: center;
             width: 70%;
             padding: 20px;
@@ -118,7 +114,6 @@
         }
 
 
-        /* Footer Styling */
         footer {
             width: 100%;
             background-color: rgb(231, 123, 15);
@@ -141,11 +136,8 @@
         .gallery {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            /* Trzy elementy w wierszu */
             gap: 36px;
-            /* Odstęp między elementami */
             justify-items: center;
-            /* Wyrównanie zdjęć w osi poziomej */
         }
 
 
@@ -158,18 +150,14 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
             max-width: 200px;
-            /* Maksymalna szerokość obrazka z podpisem */
             text-align: center;
         }
 
         .gallery img {
 
             width: 150px;
-            /* Szerokość zdjęcia */
             height: 150px;
-            /* Wysokość zdjęcia */
             object-fit: cover;
-            /* Dopasowanie zdjęcia do ramki bez zniekształceń */
             border-radius: 4px;
         }
 
@@ -202,7 +190,7 @@
     }
 
     setInterval(updateClock, 1000);
-    updateClock(); // Call immediately to avoid initial delay
+    updateClock(); 
 </script>
 
 <body>
